@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:padding="8dp"
+            android:textColor="@color/gray_300"
+            android:text="Calculadora IMC"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:paddingStart="8dp"
+            android:src="@drawable/round_arrow_back_ios_new_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:paddingStart="24dp"
+            android:text="Insira suas"
+            android:textColor="@color/blue"
+            android:textSize="48sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:text="Informações:"
+            android:textColor="@color/blue"
+            android:textSize="48sp" />
+
+        <EditText
+            android:id="@+id/edit_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/edit_text_shape"
+            android:hint="Peso(Kg)"
+            style="@style/editText"
+            android:paddingVertical="12dp"
+            android:paddingStart="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:text="* Informação obrigatória" />
+
+        <EditText
+            android:id="@+id/edit_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/edit_text_shape"
+            style="@style/editText"
+            android:hint="Altura(M)"
+            android:paddingVertical="12dp"
+            android:paddingStart="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:text="* Informação obrigatória" />
+
+        <Button
+            android:id="@+id/button_calculate"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="88dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="96dp"
+            android:gravity="center|center_vertical"
+            android:fontFamily="@font/montserrat_semibold"
+            style="@style/button"
+            android:text="Calcular" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/line_bottom_end_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
