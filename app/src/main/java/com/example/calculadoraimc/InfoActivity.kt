@@ -3,12 +3,15 @@ package com.example.calculadoraimc
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadoraimc.databinding.ActivityInfoBinding
 
 class InfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInfoBinding
+
+    private val viewModel: InfoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,36 +23,26 @@ class InfoActivity : AppCompatActivity() {
         }
 
         val btnCalculate = binding.buttonCalculate
-
-        val userWeight = binding.editWeight
-        val userHeight = binding.editHeight
+        val weight = binding.editWeight
+        val height = binding.editHeight
 
         btnCalculate.setOnClickListener {
-
-            val heightStr = userHeight.text.toString()
-            val weightStr = userWeight.text.toString()
-
-            if (heightStr.isNotEmpty() && weightStr.isNotEmpty()) {
-                val height = heightStr.toFloat()
-                val weight = weightStr.toFloat()
-                val imc = weight / (height * height)
-
-                val intent = Intent(this, ResultActivity::class.java)
-                    .apply {
-                        putExtra("EXTRA_RESULT", imc)
-                    }
-                startActivity(intent)
-                this@InfoActivity.overridePendingTransition(
-                    R.anim.animate_slide_left_enter,
-                    R.anim.animate_fade_exit
-                )
+            if (height.text.toString().isNotEmpty() && weight.text.toString().isNotEmpty()) {
+                startActivity(ResultActivity.start(this, viewModel.returnIMC(weight, height)))
             } else {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
-
     }
 
+    override fun startActivity(intent: Intent?) {
+        super.startActivity(intent)
+        this@InfoActivity.overridePendingTransition(
+            R.anim.animate_slide_left_enter,
+            R.anim.animate_fade_exit
+        )
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -58,5 +51,4 @@ class InfoActivity : AppCompatActivity() {
             R.anim.animate_slide_out_right
         )
     }
-
 }

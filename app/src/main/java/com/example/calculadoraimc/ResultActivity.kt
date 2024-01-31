@@ -1,12 +1,29 @@
 package com.example.calculadoraimc
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadoraimc.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
+
+    private val viewModel: ResultViewModel by viewModels()
+
+    companion object {
+
+        private const val EXTRA_RESULT = "extra.result"
+
+        fun start(context: Context, imc: Float): Intent {
+            return Intent(context, ResultActivity::class.java)
+                .apply {
+                    putExtra(EXTRA_RESULT, imc)
+                }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,22 +35,10 @@ class ResultActivity : AppCompatActivity() {
             finish()
         }
 
-    val result = intent.getFloatExtra("EXTRA_RESULT", 0.1f)
-        binding.textResult.text = "%.1f".format(result)
+        val result = intent.getFloatExtra(EXTRA_RESULT, 0.1f)
 
-        val classification = if (result < 18.5f) {
-            "ABAIXO DO PESO"
-        } else if (result in 18.5f..24.9f) {
-            "NORMAL"
-        } else if (result in 25f..29.9f) {
-            "SOBREPESO"
-        } else if (result in 30f..39.9f) {
-            "OBESIDADE"
-        } else {
-            "OBESIDADE GRAVE"
-        }
-
-        binding.textClassification.text = classification
+        viewModel.returnResult(result, binding.textResult)
+        viewModel.returnClassification(result, binding.textClassification)
     }
 
     override fun onBackPressed() {
