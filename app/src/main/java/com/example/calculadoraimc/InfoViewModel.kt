@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class InfoViewModel : ViewModel() {
 
-    fun returnIMC(weight: EditText, height: EditText): Float {
-        return weight.text.toString().toFloat() /
-                (height.text.toString().toFloat() * height.text.toString().toFloat())
+    fun returnIMC(weight: Float, height: Float): Float {
+        return weight / (height * height)
     }
 }

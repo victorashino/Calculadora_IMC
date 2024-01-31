@@ -37,8 +37,8 @@ class ResultActivity : AppCompatActivity() {
 
         val result = intent.getFloatExtra(EXTRA_RESULT, 0.1f)
 
-        viewModel.returnResult(result, binding.textResult)
-        viewModel.returnClassification(result, binding.textClassification)
+        binding.textResult.text = viewModel.returnResult(result)
+        binding.textClassification.text = viewModel.returnClassification(result)
     }
 
     override fun onBackPressed() {

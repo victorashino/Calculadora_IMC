@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModel
 
 class ResultViewModel : ViewModel() {
 
-    fun returnResult(imc: Float, textResult: TextView) {
-        textResult.text = "%.1f".format(imc)
+    fun returnResult(imc: Float): String {
+        return "%.1f".format(imc)
     }
 
-    fun returnClassification(result: Float, textClassification: TextView) {
-        val classification = if (result < 18.5f) {
+    fun returnClassification(result: Float): String {
+        return if (result < 18.5f) {
             "ABAIXO DO PESO"
         } else if (result in 18.5f..24.9f) {
             "NORMAL"
@@ -21,7 +21,6 @@ class ResultViewModel : ViewModel() {
         } else {
             "OBESIDADE GRAVE"
         }
-        textClassification.text = classification
     }
 
 }

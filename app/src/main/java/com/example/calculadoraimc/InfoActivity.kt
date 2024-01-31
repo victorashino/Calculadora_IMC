@@ -28,7 +28,15 @@ class InfoActivity : AppCompatActivity() {
 
         btnCalculate.setOnClickListener {
             if (height.text.toString().isNotEmpty() && weight.text.toString().isNotEmpty()) {
-                startActivity(ResultActivity.start(this, viewModel.returnIMC(weight, height)))
+                startActivity(
+                    ResultActivity.start(
+                            this,
+                            viewModel.returnIMC(
+                                weight.text.toString().toFloat(),
+                                height.text.toString().toFloat()
+                            )
+                        )
+                )
             } else {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT)
                     .show()
