@@ -1,10 +1,9 @@
-package com.example.calculadoraimc
+package com.example.calculadoraimc.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.example.calculadoraimc.databinding.ActivityInfoBinding
+import com.example.calculadoraimc.R
 import com.example.calculadoraimc.databinding.ActivityStartBinding
 
 class StartActivity : AppCompatActivity() {

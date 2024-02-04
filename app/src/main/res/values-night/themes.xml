@@ -1,7 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.CalculadoraIMC" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/gray_100</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/gray_300</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.CalculadoraIMC" parent="Base.Theme.CalculadoraIMC" />
+
+    <style name="editText" parent="Widget.AppCompat.EditText" >
+        <item name="android:inputType">numberDecimal</item>
+        <item name="hintTextColor">@color/gray_300</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="button" parent="ShapeAppearanceOverlay.Material3.Button">
+        <item name="android:textSize">32sp</item>
+        <item name="backgroundTint">@color/orange</item>
     </style>
 </resources>

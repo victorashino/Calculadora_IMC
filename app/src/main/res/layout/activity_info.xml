@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoActivity">
+    tools:context=".view.InfoActivity">
+
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,16 +19,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:padding="8dp"
-            android:textColor="@color/gray_300"
-            android:text="Calculadora IMC"
-            android:textSize="24sp" />
 
         <ImageButton
             android:id="@+id/button_back"
