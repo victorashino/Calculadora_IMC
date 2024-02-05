@@ -39,8 +39,8 @@ class ResultViewModelTest {
     @Test
     fun returnIMC() = runTest {
         val id = 0
-        val weight = 60.0f
-        val height = 1.77f
+        val weight = Random.nextFloat()
+        val height = Random.nextFloat()
         val imc = weight / (height * height)
         val classification = underTest.returnClassification(imc)
 
