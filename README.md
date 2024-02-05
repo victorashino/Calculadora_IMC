@@ -4,7 +4,7 @@ Calculadora de IMC foi um aplicativo que desenvolvi no projeto 10D Challange do 
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-<img src="/result/imc_start.png" width="200">&emsp;<img src="/result/imc_info.png" width="200">&emsp;<img src="/result/imc_result.png" width="200">
+<img src="/result/imc_start.png" width="200">&emsp;<img src="/result/imc_info.png" width="200">&emsp;<img src="/result/history.png" width="200">&emsp;<img src="/result/imc_result.png" width="200">
 
 ## Tecnologias
 * Kotlin
@@ -14,6 +14,7 @@ Calculadora de IMC foi um aplicativo que desenvolvi no projeto 10D Challange do 
     * ConstraintLayout
     * LinearLayout
 - Components de UI
+    - RecyclerView
     - TextView
     - EditText
     - Button
@@ -21,6 +22,10 @@ Calculadora de IMC foi um aplicativo que desenvolvi no projeto 10D Challange do 
 - Intent para abrir a segunda Activity
 - viewBinding para recuperar components de UI
 - Animções para transição de telas
+- Room
+- MVVM
+- Mockito
+- Testes
 
 ## Author
 Victor Ashino (follow me on [Linkedin](www.linkedin.com/in/victor-ashino-7ab3b0250))
