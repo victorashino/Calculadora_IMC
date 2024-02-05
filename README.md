@@ -14,6 +14,7 @@ Calculadora de IMC foi um aplicativo que desenvolvi no projeto 10D Challange do 
     * ConstraintLayout
     * LinearLayout
 - Components de UI
+    - RecyclerView
     - TextView
     - EditText
     - Button
