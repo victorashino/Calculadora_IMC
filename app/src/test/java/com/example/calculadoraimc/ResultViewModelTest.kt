@@ -1,33 +1,62 @@
 package com.example.calculadoraimc
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.example.calculadoraimc.data.HistoryDao
+import com.example.calculadoraimc.domain.IMC
+import com.example.calculadoraimc.view.ResultViewModel
 import kotlinx.coroutines.test.runTest
+import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import kotlin.random.Random
 
 class ResultViewModelTest {
 
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
+
+    private val historyDao: HistoryDao = mock()
+
     private val underTest: ResultViewModel by lazy {
-        ResultViewModel()
+        ResultViewModel(historyDao)
     }
 
     @Test
-    fun returnResult() {
-        // Given
-        val imc = Random.nextFloat()
+    fun createItem() = runTest {
+        val imc = IMC(
+            id = 1,
+            weight = "60.0",
+            height = "1.77",
+            classification = "NORMAL",
+            imc = "19.2"
+        )
 
-        // When
-        val result = underTest.returnResult(imc)
+        underTest.createItem(imc)
 
-        // Then
-        val expected = "%.1f".format(imc)
-
-        assert(expected == result)
+        verify(historyDao).insert(imc)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun returnClassification(): Unit = runTest  {
+    fun returnIMC() = runTest {
+        val id = 0
+        val weight = 60.0f
+        val height = 1.77f
+        val imc = weight / (height * height)
+        val classification = underTest.returnClassification(imc)
+
+        val weightStr = weight.toString()
+        val heightStr = height.toString()
+        val imcStr = "%.1f".format(imc)
+
+        val result = underTest.returnIMC(id, weight, height)
+
+        val expected = IMC(id, weightStr, heightStr, classification, imcStr)
+
+        assert(expected.imc == result.imc)
+    }
+
+    @Test
+    fun returnClassification() = runTest  {
         // Given
         val imc = Random.nextFloat()
 

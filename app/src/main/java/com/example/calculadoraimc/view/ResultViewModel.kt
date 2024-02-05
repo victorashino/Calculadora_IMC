@@ -54,7 +54,7 @@ class ResultViewModel(
         )
     }
 
-    private fun returnClassification(result: Float): String {
+    fun returnClassification(result: Float): String {
         return if (result < 18.5f) {
             "ABAIXO DO PESO"
         } else if (result in 18.5f..24.9f) {
