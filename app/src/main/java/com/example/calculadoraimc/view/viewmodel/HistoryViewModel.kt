@@ -1,4 +1,4 @@
-package com.example.calculadoraimc.view
+package com.example.calculadoraimc.view.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.LiveData

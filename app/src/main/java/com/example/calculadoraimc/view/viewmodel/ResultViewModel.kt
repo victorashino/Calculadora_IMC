@@ -1,4 +1,4 @@
-package com.example.calculadoraimc.view
+package com.example.calculadoraimc.view.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -17,12 +17,10 @@ class ResultViewModel(
 ) : ViewModel() {
 
     companion object {
-
         fun getVMFactory(application: Application): ViewModelProvider.Factory {
             val dataBaseInstance = (application as ImcApplication).getAppDataBase()
             val dao = dataBaseInstance.historyDao()
             val factory = object : ViewModelProvider.Factory {
-
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return ResultViewModel(dao) as T
                 }
@@ -39,18 +37,13 @@ class ResultViewModel(
 
     fun returnIMC(id: Int, weight: Float, height: Float): IMC {
         val imc = weight / (height * height)
-        val classification = returnClassification(imc)
-
-        val imcStr = "%.1f".format(imc)
-        val weightStr = weight.toString()
-        val heightStr = height.toString()
 
         return IMC(
             id,
-            weightStr,
-            heightStr,
-            classification,
-            imcStr
+            weight.toString(),
+            height.toString(),
+            returnClassification(imc),
+            "%.1f".format(imc)
         )
     }
 

@@ -1,5 +1,6 @@
 package com.example.calculadoraimc.view
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -22,20 +23,23 @@ class InfoActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        binding.buttonBack.setOnClickListener {
-            onBackPressed()
-        }
-
-        val btnCalculate = binding.buttonCalculate
         val weight = binding.editWeight
         val height = binding.editHeight
 
-        btnCalculate.setOnClickListener {
-            if (height.text.toString().isNotEmpty() && weight.text.toString().isNotEmpty()) {
+        binding.buttonBack.setOnClickListener {
+            val intent = Intent(this, StartActivity::class.java)
+            val anim = ActivityOptions.makeCustomAnimation(
+                applicationContext,
+                R.anim.animate_fade_enter,
+                R.anim.animate_slide_out_right
+            ).toBundle()
+            startActivity(intent, anim)
+        }
 
+        binding.buttonCalculate.setOnClickListener {
+            if (height.text.toString().isNotEmpty() && weight.text.toString().isNotEmpty()) {
                 val weightStr = weight.text.toString().toFloat()
                 val heightStr = height.text.toString().toFloat()
-
                 startActivity(
                     ResultActivity.start(this, weightStr, heightStr)
                 )
@@ -55,27 +59,15 @@ class InfoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
-                startActivity(HistoryActivity.start(applicationContext))
+                val intent = Intent(HistoryActivity.start(applicationContext))
+                val anim = ActivityOptions.makeCustomAnimation(
+                    applicationContext,
+                    R.anim.animate_slide_left_enter,
+                    R.anim.animate_fade_exit
+                ).toBundle()
+                startActivity(intent, anim)
                 true
-            }
-
-            else -> super.onOptionsItemSelected(item)
+            } else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        this@InfoActivity.overridePendingTransition(
-            R.anim.animate_slide_left_enter,
-            R.anim.animate_fade_exit
-        )
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        this@InfoActivity.overridePendingTransition(
-            R.anim.animate_fade_enter,
-            R.anim.animate_slide_out_right
-        )
     }
 }

@@ -2,7 +2,7 @@ package com.example.calculadoraimc
 
 import com.example.calculadoraimc.data.HistoryDao
 import com.example.calculadoraimc.domain.IMC
-import com.example.calculadoraimc.view.ResultViewModel
+import com.example.calculadoraimc.view.viewmodel.ResultViewModel
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -14,15 +14,12 @@ class ResultViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
-
     private val historyDao: HistoryDao = mock()
-
-    private val underTest: ResultViewModel by lazy {
-        ResultViewModel(historyDao)
-    }
+    private val underTest: ResultViewModel by lazy { ResultViewModel(historyDao) }
 
     @Test
     fun createItem() = runTest {
+        // Given
         val imc = IMC(
             id = 1,
             weight = "60.0",
@@ -30,26 +27,26 @@ class ResultViewModelTest {
             classification = "NORMAL",
             imc = "19.2"
         )
-
+        // When
         underTest.createItem(imc)
-
+        // Then
         verify(historyDao).insert(imc)
     }
 
     @Test
     fun returnIMC() = runTest {
+        // Given
         val id = 0
         val weight = Random.nextFloat()
         val height = Random.nextFloat()
         val imc = weight / (height * height)
         val classification = underTest.returnClassification(imc)
-
+        // When
         val weightStr = weight.toString()
         val heightStr = height.toString()
         val imcStr = "%.1f".format(imc)
-
+        // Then
         val result = underTest.returnIMC(id, weight, height)
-
         val expected = IMC(id, weightStr, heightStr, classification, imcStr)
 
         assert(expected.imc == result.imc)
@@ -59,10 +56,8 @@ class ResultViewModelTest {
     fun returnClassification() = runTest  {
         // Given
         val imc = Random.nextFloat()
-
         // When
         val result = underTest.returnClassification(imc)
-
         // Then
         val expected = if (imc < 18.5f) {
             "ABAIXO DO PESO"
@@ -75,8 +70,6 @@ class ResultViewModelTest {
         } else {
             "OBESIDADE GRAVE"
         }
-
         assert(expected == result)
-
     }
 }

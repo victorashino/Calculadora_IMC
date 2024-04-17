@@ -6,6 +6,5 @@ import com.example.calculadoraimc.domain.IMC
 
 @Database(entities = [IMC::class], version = 1)
 abstract class AppDataBase : RoomDatabase() {
-
     abstract fun historyDao(): HistoryDao
 }

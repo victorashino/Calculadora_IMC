@@ -1,5 +1,6 @@
 package com.example.calculadoraimc.view
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,11 +17,14 @@ class StartActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonStart.setOnClickListener {
-            startActivity(Intent(this, InfoActivity::class.java))
-            this@StartActivity.overridePendingTransition(
+
+            val intent = Intent(this, InfoActivity::class.java)
+            val anim = ActivityOptions.makeCustomAnimation(
+                applicationContext,
                 R.anim.animate_slide_left_enter,
                 R.anim.animate_fade_exit
-            )
+            ).toBundle()
+            startActivity(intent, anim)
         }
     }
 }

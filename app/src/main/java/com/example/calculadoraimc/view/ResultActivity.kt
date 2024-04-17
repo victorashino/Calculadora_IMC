@@ -1,5 +1,6 @@
 package com.example.calculadoraimc.view
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,11 +8,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculadoraimc.R
 import com.example.calculadoraimc.databinding.ActivityResultBinding
+import com.example.calculadoraimc.view.viewmodel.ResultViewModel
 
 class ResultActivity : AppCompatActivity() {
 
     companion object {
-
         private const val EXTRA_WEIGHT = "extra.weight"
         private const val EXTRA_HEIGHT = "extra.height"
 
@@ -25,10 +26,7 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityResultBinding
-
-    private val viewModel: ResultViewModel by viewModels {
-        ResultViewModel.getVMFactory(application)
-    }
+    private val viewModel: ResultViewModel by viewModels { ResultViewModel.getVMFactory(application) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,13 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonBack.setOnClickListener {
-            onBackPressed()
+            val intent = Intent(this, InfoActivity::class.java)
+            val anim = ActivityOptions.makeCustomAnimation(
+                applicationContext,
+                R.anim.animate_fade_enter,
+                R.anim.animate_slide_out_right
+            ).toBundle()
+            startActivity(intent, anim)
             finish()
         }
 
@@ -48,13 +52,5 @@ class ResultActivity : AppCompatActivity() {
         binding.textClassification.text = imc.classification
 
         viewModel.createItem(imc)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        this@ResultActivity.overridePendingTransition(
-            R.anim.animate_fade_enter,
-            R.anim.animate_slide_out_right
-        )
     }
 }
